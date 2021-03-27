@@ -37,3 +37,32 @@ models:
       +materialized: view
     marts:
       +materialized: table
+
+# Table:
+# Data is stored on disk
+# Slower to build
+# Faster to query
+# Configure in dbt_project.yml or with the following config block
+
+# View:
+# Query is stored on disk
+# Faster to build
+# Slower to query
+# Configure in dbt_project.yml or with the following config block
+
+# Ephemeral:
+# Does not exist in the database, can not query directly
+# Imported as CTE into downstream models
+# Increases build time of downstream models
+# Configure in dbt_project.yml or with the following config block
+
+# Increment
+# Built as table in the database
+# On the first run, builds entire table
+# On subsequent runs, only appends new records
+# Faster to build because you are only adding new records
+# Does not capture 100% of the data all the time
+
+# Snapshots
+# Built as a table in the database, usually in a dedicated schema.
+# On the first run, builds entire table and adds four columns: dbt_scd_id, dbt_updated_at, dbt_valid_from, and dbt_valid_to
