@@ -11,7 +11,7 @@ select
 
 from {{ source('jaffle_shop', 'orders')}}
 {% if is_incremental() %}
-where order_date > (select dateadd('day', -3,  bmax(order_date), ) from {{ this }})
+where order_date > (select dateadd('day', -3,  max(order_date)) from {{ this }})
 {% endif %}
 
 -- How incremental works
