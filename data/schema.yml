@@ -1,0 +1,14 @@
+version: 2
+
+seeds:
+  - name: employees
+    description: A list of employees who are also customers
+    columns:
+      - name: employee_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
